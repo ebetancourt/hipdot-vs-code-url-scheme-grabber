@@ -2,6 +2,7 @@
   "name": "hipdot-vs-code-url-scheme-grabber",
   "displayName": "VS Code URL Scheme Grabber",
   "description": "easily copy the vscode link to your current file and line number either just the URL or in Markdown format",
+  "publisher": "hipdot",
   "icon": "images/icon.png",
   "version": "1.0.1",
   "engines": {
