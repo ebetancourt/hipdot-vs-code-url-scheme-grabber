@@ -2,6 +2,10 @@
 
 Visual Studio Code has a documented way to open VS code using URLs (in the MacOS / iOS world, this is commonly called a URL Scheme or URI Scheme). You can see the documentation here: [Opening VS Code with URLs](https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls). This is something I personally use when planning out the steps I will take to implement a feature. However there is no built in way to get the URL from VS Code, so I have been copying the absolute path and manually creating the URLs (with snippets in my notes program of choice).
 
+Other times you might want links that open VS Code to a specific file location:
+- When adding tasks for yourself in your task manager
+- taking notes on the way a codebase works
+
 ## Features
 
 This extension adds two commands:
