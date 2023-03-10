@@ -29,9 +29,11 @@ function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false): st
 	const path = document.uri.path;
 	const relativePath = path.replace(vscode.workspace.rootPath, '');
 	const lineNumber = editor.selection.active.line + 1;
+	const columnNumber = editor.selection.active.character + 1;
+	const includeColumn = vscode.workspace.getConfiguration('hipdotUrlSchemeGrabber').get('includeColumn');
 
-	const url = `vscode://file${path}:${lineNumber}`;
-	return markdown ? `[${relativePath}:${lineNumber}](${url})` : url;
+	const url = `vscode://file${path}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}`;
+	return markdown ? `[${relativePath}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}](${url})` : url;
 };
 
 // This method is called when your extension is activated

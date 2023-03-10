@@ -1,71 +1,44 @@
-# hipdot-vs-code-url-scheme-grabber README
+# VS Code URL Scheme Grabber README
 
-This is the README for your extension "hipdot-vs-code-url-scheme-grabber". After writing up a brief description, we recommend including the following sections.
+Visual Studio Code has a documented way to open VS code using URLs (in the MacOS / iOS world, this is commonly called a URL Scheme or URI Scheme). You can see the documentation here: [Opening VS Code with URLs](https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls). This is something I personally use when planning out the steps I will take to implement a feature. However there is no built in way to get the URL from VS Code, so I have been copying the absolute path and manually creating the URLs (with snippets in my notes program of choice).
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This extension adds two commands:
 
-For example if there is an image subfolder under your extension project workspace:
+* Copy Link to Current File and Line Number
+* Copy Link to Current File and Line Number in Markdown Format
 
-\!\[feature X\]\(images/feature-x.png\)
+A short demo of it in action:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+![Screencast of URL Scheme Grabber in Use](./images/screencast.gif)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+This extension contributes following setting, which can be found under the heading "URL Scheme Grabber":
 
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `hipdotUrlSchemeGrabber.includeColumn`: Include the column number in the link to the current file and line number
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+None yet
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Initial release of VS Code URL Scheme Grabber
 
 ---
 
-## Following extension guidelines
+## TODO List / Future Improvement Ideas:
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+- [x] Add Command to copy the raw URL of the current location~
+- [x] Add Command to copy a markdown link to the current location
+- [x] Add a setting to optionally include the column number in the link
+- [ ] Add copying the link and markdown link with the column number as optional additional commands
+- [ ] Context menu to right click on files in the file explorer or the current cursor and copy the file/cursor location
+- [ ] Be able to call the extension via a VS Code URL from outside VS Code to get the current location of the cursor or the current file (I know, how meta!) so that it can be used by apps like [Hookmark](https://hookproductivity.com/), MacOS Shortcuts that get the current file url from the active app - or to be able to script getting the current location from outside Visual Studio Code in interesting ways
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**

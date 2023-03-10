@@ -2,7 +2,8 @@
   "name": "hipdot-vs-code-url-scheme-grabber",
   "displayName": "VS Code URL Scheme Grabber",
   "description": "easily copy the vscode link to your current file and line number either just the URL or in Markdown format",
-  "version": "0.0.1",
+  "icon": "images/icon.png",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.76.0"
   },
@@ -21,7 +22,17 @@
         "command": "hipdot-vs-code-url-scheme-grabber.copyMarkdownLink",
         "title": "Copy Link to Current File and Line Number in Markdown Format"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "URL Scheme Grabber",
+      "properties": {
+        "hipdotUrlSchemeGrabber.includeColumn": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include the column number in the link to the current file and line number"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
