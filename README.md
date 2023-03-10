@@ -29,7 +29,7 @@ None yet
 
 ## Release Notes
 
-### 1.0.0
+### 1.0.2
 
 Initial release of VS Code URL Scheme Grabber
 
