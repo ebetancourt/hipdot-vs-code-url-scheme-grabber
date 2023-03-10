@@ -10,6 +10,15 @@
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "copy",
+    "file path",
+    "line number",
+    "clipboard",
+    "URL Scheme",
+    "URI Scheme",
+    "Current file and line number"
+  ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
