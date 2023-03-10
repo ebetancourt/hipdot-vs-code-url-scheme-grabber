@@ -15,7 +15,7 @@ This extension adds two commands:
 
 A short demo of it in action:
 
-![Screencast of URL Scheme Grabber in Use](./images/screencast.gif)
+![Screencast of URL Scheme Grabber in Use](https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber/raw/main/images/screencast.gif)
 
 ## Extension Settings
 
