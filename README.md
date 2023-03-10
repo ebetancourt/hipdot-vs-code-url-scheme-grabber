@@ -31,6 +31,16 @@ Initial release of VS Code URL Scheme Grabber
 
 ---
 
+## Acknowlegements
+
+My extension is heavily based off the hardwork of [Nisanth Chunduru](https://github.com/nisanthchunduru) in his repo here:
+
+- [nisanthchunduru/vscode-copy-filepath-with-line-number: VSCode extention to copy current file's full path with current line number](https://github.com/nisanthchunduru/vscode-copy-filepath-with-line-number)
+
+I just took the Yoeman generated starter for a VS Code Extension and added his logic because I wanted to be able to grab the full URL link.
+
+Thanks Nisanth!
+
 ## TODO List / Future Improvement Ideas:
 
 - [x] Add Command to copy the raw URL of the current location~
