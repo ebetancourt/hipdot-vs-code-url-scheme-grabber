@@ -40,5 +40,9 @@ Initial release of VS Code URL Scheme Grabber
 - [ ] Context menu to right click on files in the file explorer or the current cursor and copy the file/cursor location
 - [ ] Be able to call the extension via a VS Code URL from outside VS Code to get the current location of the cursor or the current file (I know, how meta!) so that it can be used by apps like [Hookmark](https://hookproductivity.com/), MacOS Shortcuts that get the current file url from the active app - or to be able to script getting the current location from outside Visual Studio Code in interesting ways
 
+## Contributing:
+
+Issue reports and PRs are welcome at [https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber](https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber)
+
 
 **Enjoy!**
