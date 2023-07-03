@@ -30,9 +30,12 @@ function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false): st
 	const relativePath = path.replace(vscode.workspace.rootPath, '');
 	const lineNumber = editor.selection.active.line + 1;
 	const columnNumber = editor.selection.active.character + 1;
-	const includeColumn = vscode.workspace.getConfiguration('hipdotUrlSchemeGrabber').get('includeColumn');
+	const config = vscode.workspace.getConfiguration('hipdotUrlSchemeGrabber')
+	const includeColumn = config.get('includeColumn');
+	const useVSCodeInsiders = config.get('useVSCodeInsiders');
+	const protocol = useVSCodeInsiders ? 'vscode-insiders': 'vscode'
 
-	const url = `vscode://file${path}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}`;
+	const url = `${protocol}://file${path}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}`;
 	return markdown ? `[${relativePath}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}](${url})` : url;
 };
 
