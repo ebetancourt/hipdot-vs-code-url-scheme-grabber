@@ -12,6 +12,8 @@ This extension adds two commands:
 
 * Copy Link to Current File and Line Number
 * Copy Link to Current File and Line Number in Markdown Format
+* Copy Link to Current File and Line Number and Selection in Markdown Format
+
 
 A short demo of it in action:
 
@@ -28,6 +30,10 @@ This extension contributes following setting, which can be found under the headi
 None yet
 
 ## Release Notes
+
+### 1.0.3
+
+Added additional command that includes the option to copy the user's selection along with the link as Markdown.
 
 ### 1.0.2
 

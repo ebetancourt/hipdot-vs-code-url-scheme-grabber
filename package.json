@@ -5,7 +5,7 @@
   "publisher": "HipDotMedia",
   "license": "MIT",
   "icon": "images/icon.png",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber"
@@ -36,6 +36,10 @@
       {
         "command": "hipdot-vs-code-url-scheme-grabber.copyMarkdownLink",
         "title": "Copy Link to Current File and Line Number in Markdown Format"
+      },
+      {
+        "command": "hipdot-vs-code-url-scheme-grabber.copyMarkdownLinkAndSelection",
+        "title": "Copy Link to Current File and Line Number + Selection in Markdown Format"
       }
     ],
     "configuration": {
