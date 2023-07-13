@@ -11,7 +11,7 @@ class NoTextEditorOpen extends Error {
 class DocumentIsUntitled extends Error {
 }
 
-function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false): string {
+function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false, include_highlighted_text_as_code_block: boolean = false): string {
 	if (!vscode.workspace.rootPath) {
 		throw new NoWorkspaceOpen;
 	}
@@ -33,7 +33,16 @@ function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false): st
 	const includeColumn = vscode.workspace.getConfiguration('hipdotUrlSchemeGrabber').get('includeColumn');
 
 	const url = `vscode://file${path}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}`;
-	return markdown ? `[${relativePath}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}](${url})` : url;
+	// return markdown ? `[${relativePath}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}](${url})` : url;
+    let output = markdown ? `[${relativePath}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}](${url})` : url;
+    
+    if (include_highlighted_text_as_code_block) {
+        const selectedText = editor.document.getText(editor.selection);
+        const codeBlock = "```" + document.languageId + "\n" + selectedText + "\n```";
+        output += "\n\n" + codeBlock;
+    }
+    
+    return output;
 };
 
 // This method is called when your extension is activated
@@ -71,7 +80,7 @@ export function activate(context: vscode.ExtensionContext) {
 	let copyMarkdownLink = vscode.commands.registerCommand('hipdot-vs-code-url-scheme-grabber.copyMarkdownLink', () => {
 		let filePathWithLineNumber;
 		try {
-			filePathWithLineNumber = copyCurrentFilePathWithCurrentLineNumber(true);
+			filePathWithLineNumber = copyCurrentFilePathWithCurrentLineNumber(true, false);
 		} catch (e) {
 			if (e instanceof NoWorkspaceOpen) {
 			} else if (e instanceof NoTextEditorOpen) {
@@ -91,6 +100,34 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(copyMarkdownLink);
+
+	let copyMarkdownLinkAndSelection = vscode.commands.registerCommand('hipdot-vs-code-url-scheme-grabber.copyMarkdownLinkAndSelection', () => {
+		let filePathWithLineNumberAndCode;
+		try {
+			filePathWithLineNumberAndCode = copyCurrentFilePathWithCurrentLineNumber(true, true);
+		} catch (e) {
+			if (e instanceof NoWorkspaceOpen) {
+			} else if (e instanceof NoTextEditorOpen) {
+			} else if (e instanceof DocumentIsUntitled) {
+			} else {
+				throw e;
+			}
+		}
+
+		if (!filePathWithLineNumberAndCode) {
+			throw new Error("Could not get file path with line number.");
+		}
+
+		vscode.env.clipboard.writeText(filePathWithLineNumberAndCode).then(() => {
+			vscode.window.showInformationMessage('Markdown URL+Selection Copied to Clipboard');
+		});
+	});
+
+	context.subscriptions.push(copyMarkdownLinkAndSelection);
+
+
+
+
 }
 
 // This method is called when your extension is deactivated
