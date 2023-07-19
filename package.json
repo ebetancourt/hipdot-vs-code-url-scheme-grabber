@@ -38,10 +38,23 @@
         "title": "Copy Link to Current File and Line Number in Markdown Format"
       },
       {
+        "command": "hipdot-vs-code-url-scheme-grabber.copyLinkAndSelection",
+        "title": "Copy Link to Current File and Line Number + Selection in Format"
+      },
+      {
         "command": "hipdot-vs-code-url-scheme-grabber.copyMarkdownLinkAndSelection",
         "title": "Copy Link to Current File and Line Number + Selection in Markdown Format"
       }
     ],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "hipdot-vs-code-url-scheme-grabber.copyLinkAndSelection",
+					"title": "Copy Link + Selection",
+					"group": "9_cutcopypaste"
+				}
+			]
+		},
     "configuration": {
       "title": "URL Scheme Grabber",
       "properties": {
