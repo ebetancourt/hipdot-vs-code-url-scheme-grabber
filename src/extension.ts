@@ -39,7 +39,8 @@ function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false, inc
     if (include_highlighted_text_as_code_block) {
         const selectedText = editor.document.getText(editor.selection);
         const codeBlock = "```" + document.languageId + "\n" + selectedText + "\n```";
-        output += "\n\n" + codeBlock;
+		// TODO: optionally de-indent to the appropriate (minimum) level
+        output += "\n" + codeBlock;
     }
     
     return output;
@@ -100,6 +101,31 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(copyMarkdownLink);
+
+	let copyLinkAndSelection = vscode.commands.registerCommand('hipdot-vs-code-url-scheme-grabber.copyLinkAndSelection', () => {
+		let filePathWithLineNumberAndCode;
+		try {
+			filePathWithLineNumberAndCode = copyCurrentFilePathWithCurrentLineNumber(false, true);
+		} catch (e) {
+			if (e instanceof NoWorkspaceOpen) {
+			} else if (e instanceof NoTextEditorOpen) {
+			} else if (e instanceof DocumentIsUntitled) {
+			} else {
+				throw e;
+			}
+		}
+
+		if (!filePathWithLineNumberAndCode) {
+			throw new Error("Could not get file path with line number.");
+		}
+
+		vscode.env.clipboard.writeText(filePathWithLineNumberAndCode).then(() => {
+			vscode.window.showInformationMessage('URL+Selection Copied to Clipboard');
+		});
+	});
+
+	context.subscriptions.push(copyLinkAndSelection);
+
 
 	let copyMarkdownLinkAndSelection = vscode.commands.registerCommand('hipdot-vs-code-url-scheme-grabber.copyMarkdownLinkAndSelection', () => {
 		let filePathWithLineNumberAndCode;
