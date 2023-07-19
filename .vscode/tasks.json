@@ -15,6 +15,15 @@
 				"kind": "build",
 				"isDefault": true
 			}
+		},
+		{
+			"type": "npm",
+			"script": "vscode:prepublish",
+			"problemMatcher": [
+				"$eslint-compact"
+			],
+			"label": "npm: vscode:prepublish",
+			"detail": "yarn run compile"
 		}
 	]
 }
