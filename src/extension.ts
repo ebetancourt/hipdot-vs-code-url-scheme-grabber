@@ -11,7 +11,7 @@ class NoTextEditorOpen extends Error {
 class DocumentIsUntitled extends Error {
 }
 
-function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false, include_highlighted_text_as_code_block: boolean = false): string {
+function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false, includeHighlightedTextAsCodeBlock: boolean = false): string {
 	if (!vscode.workspace.rootPath) {
 		throw new NoWorkspaceOpen;
 	}
@@ -36,7 +36,7 @@ function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false, inc
 	// return markdown ? `[${relativePath}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}](${url})` : url;
     let output = markdown ? `[${relativePath}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}](${url})` : url;
     
-    if (include_highlighted_text_as_code_block) {
+    if (includeHighlightedTextAsCodeBlock) {
         const selectedText = editor.document.getText(editor.selection);
         const codeBlock = "```" + document.languageId + "\n" + selectedText + "\n```";
 		// TODO: optionally de-indent to the appropriate (minimum) level
