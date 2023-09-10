@@ -2,9 +2,6 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-class NoWorkspaceOpen extends Error {
-}
-
 class NoTextEditorOpen extends Error {
 }
 
@@ -12,10 +9,6 @@ class DocumentIsUntitled extends Error {
 }
 
 function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false): string {
-	if (!vscode.workspace.rootPath) {
-		throw new NoWorkspaceOpen;
-	}
-
 	let editor = vscode.window.activeTextEditor;
 	if (!editor) {
 		throw new NoTextEditorOpen;
@@ -27,7 +20,9 @@ function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false): st
 	}
 
 	const path = document.uri.path;
-	const relativePath = path.replace(vscode.workspace.rootPath, '');
+	const relativePath = vscode.workspace.rootPath
+    ? path.replace(vscode.workspace.rootPath, "")
+    : path;
 	const lineNumber = editor.selection.active.line + 1;
 	const columnNumber = editor.selection.active.character + 1;
 	const includeColumn = vscode.workspace.getConfiguration('hipdotUrlSchemeGrabber').get('includeColumn');
@@ -49,8 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
 		try {
 			filePathWithLineNumber = copyCurrentFilePathWithCurrentLineNumber();
 		} catch (e) {
-			if (e instanceof NoWorkspaceOpen) {
-			} else if (e instanceof NoTextEditorOpen) {
+			if (e instanceof NoTextEditorOpen) {
 			} else if (e instanceof DocumentIsUntitled) {
 			} else {
 				throw e;
@@ -73,8 +67,7 @@ export function activate(context: vscode.ExtensionContext) {
 		try {
 			filePathWithLineNumber = copyCurrentFilePathWithCurrentLineNumber(true);
 		} catch (e) {
-			if (e instanceof NoWorkspaceOpen) {
-			} else if (e instanceof NoTextEditorOpen) {
+			if (e instanceof NoTextEditorOpen) {
 			} else if (e instanceof DocumentIsUntitled) {
 			} else {
 				throw e;
