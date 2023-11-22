@@ -12,6 +12,8 @@ This extension adds two commands:
 
 * Copy Link to Current File and Line Number
 * Copy Link to Current File and Line Number in Markdown Format
+* Copy Link to Current File and Line Number and Selection in Markdown Format
+
 
 A short demo of it in action:
 
@@ -28,6 +30,12 @@ This extension contributes following setting, which can be found under the headi
 None yet
 
 ## Release Notes
+
+### 1.0.5
+
+- [\[Fix\] Remove workspace existing check by velios · Pull Request #5](https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber/pull/5)
+- [Add option to open links in VSCode Insiders by dandavison · Pull Request #2](https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber/pull/2)
+- [Added command to copy selected text in addition to line number/link by CommanderPho · Pull Request #4](https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber/pull/4)
 
 ### 1.0.2
 

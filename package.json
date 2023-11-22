@@ -5,7 +5,7 @@
   "publisher": "HipDotMedia",
   "license": "MIT",
   "icon": "images/icon.png",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber"
@@ -36,6 +36,14 @@
       {
         "command": "hipdot-vs-code-url-scheme-grabber.copyMarkdownLink",
         "title": "Copy Link to Current File and Line Number in Markdown Format"
+      },
+      {
+        "command": "hipdot-vs-code-url-scheme-grabber.copyLinkAndSelection",
+        "title": "Copy Link to Current File and Line Number + Selection in Format"
+      },
+      {
+        "command": "hipdot-vs-code-url-scheme-grabber.copyMarkdownLinkAndSelection",
+        "title": "Copy Link to Current File and Line Number + Selection in Markdown Format"
       }
     ],
     "configuration": {
@@ -63,16 +71,16 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.76.0",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
+    "@types/vscode": "^1.76.0",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
+    "@vscode/test-electron": "^2.2.3",
     "eslint": "^8.34.0",
     "glob": "^8.1.0",
     "mocha": "^10.2.0",
-    "typescript": "^4.9.5",
-    "@vscode/test-electron": "^2.2.3"
+    "typescript": "^4.9.5"
   }
 }
