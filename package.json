@@ -45,6 +45,11 @@
           "type": "boolean",
           "default": false,
           "description": "Include the column number in the link to the current file and line number"
+        },
+        "hipdotUrlSchemeGrabber.useVSCodeInsiders": {
+          "type": "boolean",
+          "default": false,
+          "description": "Format the link so that it opens in VSCode Insiders instead of VSCode"
         }
       }
     }
