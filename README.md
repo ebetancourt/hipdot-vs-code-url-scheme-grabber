@@ -31,9 +31,11 @@ None yet
 
 ## Release Notes
 
-### 1.0.3
+### 1.0.5
 
-Added additional command that includes the option to copy the user's selection along with the link as Markdown.
+- [\[Fix\] Remove workspace existing check by velios · Pull Request #5](https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber/pull/5)
+- [Add option to open links in VSCode Insiders by dandavison · Pull Request #2](https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber/pull/2)
+- [Added command to copy selected text in addition to line number/link by CommanderPho · Pull Request #4](https://github.com/ebetancourt/hipdot-vs-code-url-scheme-grabber/pull/4)
 
 ### 1.0.2
 

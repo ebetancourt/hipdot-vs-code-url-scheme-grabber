@@ -20,29 +20,29 @@ function copyCurrentFilePathWithCurrentLineNumber(markdown: boolean = false, inc
 	}
 
 	const path = document.uri.path;
-	const relativePath = vscode.workspace.rootPath
-    ? path.replace(vscode.workspace.rootPath, "")
-    : path;
+	const relativePath = vscode.workspace?.rootPath
+		? path.replace(vscode.workspace?.rootPath, "")
+		: path;
 	const lineNumber = editor.selection.active.line + 1;
 	const columnNumber = editor.selection.active.character + 1;
-	const config = vscode.workspace.getConfiguration('hipdotUrlSchemeGrabber')
+	const config = vscode.workspace.getConfiguration('hipdotUrlSchemeGrabber');
 	const includeColumn = config.get('includeColumn');
 	const useVSCodeInsiders = config.get('useVSCodeInsiders');
-	const protocol = useVSCodeInsiders ? 'vscode-insiders': 'vscode'
+	const protocol = useVSCodeInsiders ? 'vscode-insiders' : 'vscode';
 
-	const url = `vscode://file${path}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}`;
+	const url = `${protocol}://file${path}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}`;
 	// return markdown ? `[${relativePath}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}](${url})` : url;
-  let output = markdown ? `[${relativePath}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}](${url})` : url;
+	let output = markdown ? `[${relativePath}:${lineNumber}${includeColumn ? `:${columnNumber}` : ''}](${url})` : url;
 
-  // Should probably ignore `includeHighlightedTextAsCodeBlock` if we are returning the raw URL?
-  if (includeHighlightedTextAsCodeBlock) {
-      const selectedText = editor.document.getText(editor.selection);
-      const codeBlock = "```" + document.languageId + "\n" + selectedText + "\n```";
-      // TODO: optionally de-indent to the appropriate (minimum) level
-      output += "\n" + codeBlock;
-  }
+	const selectedText = editor.document.getText(editor.selection);
+	// Should probably ignore `includeHighlightedTextAsCodeBlock` if we are returning the raw URL?
+	if (includeHighlightedTextAsCodeBlock && selectedText.length) {
+		const codeBlock = "```" + document.languageId + "\n" + selectedText + "\n```";
+		// TODO: optionally de-indent to the appropriate (minimum) level
+		output += "\n" + codeBlock;
+	}
 
-  return output;
+	return output;
 };
 
 // This method is called when your extension is activated
@@ -104,8 +104,7 @@ export function activate(context: vscode.ExtensionContext) {
 		try {
 			filePathWithLineNumberAndCode = copyCurrentFilePathWithCurrentLineNumber(false, true);
 		} catch (e) {
-			if (e instanceof NoWorkspaceOpen) {
-			} else if (e instanceof NoTextEditorOpen) {
+			if (e instanceof NoTextEditorOpen) {
 			} else if (e instanceof DocumentIsUntitled) {
 			} else {
 				throw e;
@@ -129,8 +128,7 @@ export function activate(context: vscode.ExtensionContext) {
 		try {
 			filePathWithLineNumberAndCode = copyCurrentFilePathWithCurrentLineNumber(true, true);
 		} catch (e) {
-			if (e instanceof NoWorkspaceOpen) {
-			} else if (e instanceof NoTextEditorOpen) {
+			if (e instanceof NoTextEditorOpen) {
 			} else if (e instanceof DocumentIsUntitled) {
 			} else {
 				throw e;
